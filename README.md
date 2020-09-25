@@ -1,6 +1,9 @@
 # ProcessOnRegister
 ProcessOn微信注册
 
+## 下载注册器
+
+* [github](https://github.com/likly/ProcessOnRegister/releases)
 
 ## 开启你的表演
 
