@@ -1,15 +1,11 @@
 package org.finalframework.processon;
 
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -116,6 +112,10 @@ public class ProcessOnWeChatRegister {
         logger.info("open home: {}", url);
         driver.manage().deleteAllCookies();
         driver.get(url);
+
+        sleep(1000);
+        new Actions(driver).sendKeys(Keys.ESCAPE).perform();
+
     }
 
     public void close() {

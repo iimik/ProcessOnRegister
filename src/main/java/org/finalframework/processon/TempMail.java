@@ -3,6 +3,7 @@ package org.finalframework.processon;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 
 import java.util.Arrays;
 import java.util.List;
@@ -52,6 +53,7 @@ public class TempMail<T> implements Mail<T> {
         String address = null;
         while (address == null || address.trim().isEmpty()) {
             sleep(1000);
+            new Actions(driver).sendKeys(Keys.ESCAPE).perform();
             logger.info("try to find email...");
             address = driver.findElement(By.id("active-mail")).getAttribute("value");
         }
@@ -82,6 +84,7 @@ public class TempMail<T> implements Mail<T> {
 
     private WebElement tryReceive() {
         try {
+            driver.navigate().refresh();
             logger.info("try to receive message");
             WebElement messages = driver.findElement(By.id("message-list"));
             return messages.findElement(By.className("link"));
