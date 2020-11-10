@@ -16,6 +16,14 @@ java -jar processon-register.jar {你的邀请链接}
 
 ## 原理解析
 
+### 原理基础
+
+根据**ProcessON**公布的邀新规则，每邀请一个新用户注册并绑定微信，即可获取3张文件数。原文如图所示：
+
+![微信邀新规则](static/images/ProcessOn-wechat-rule.png)
+
+
+
 ### 流程分析
 
 ![ProcessOn微信注册流程](http://assets.processon.com/chart_image/5f6d62fa7d9c08039fb93cee.png)
