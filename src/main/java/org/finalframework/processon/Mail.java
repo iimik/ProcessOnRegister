@@ -16,6 +16,8 @@ public interface Mail<T> {
 
     void close();
 
+    void skipAd();
+
     void parse();
 
     void setContentParser(ContentParser<T> parser);

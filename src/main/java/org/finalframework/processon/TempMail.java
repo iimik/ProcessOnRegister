@@ -98,6 +98,16 @@ public class TempMail<T> implements Mail<T> {
     }
 
     @Override
+    public void skipAd() {
+        try {
+            driver.navigate().to(HOME);
+            this.doReceive();
+        }catch (Exception e){
+
+        }
+    }
+
+    @Override
     public void parse() {
         T content = parser.doParse(driver);
         if (listener != null) {

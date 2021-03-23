@@ -152,6 +152,10 @@ public class ProcessOnWeChatRegister {
                             WebElement mailContent = driver.findElement(By.className("mail-content"));
                             List<WebElement> elements = mailContent.findElements(By.tagName("strong"));
                             if (elements != null && elements.size() == 2) {
+
+
+
+
                                 return elements.get(1).getText().trim();
                             }
                             sleep(200);
@@ -200,6 +204,12 @@ public class ProcessOnWeChatRegister {
                 public void onReceive(WebDriver driver, WebElement message) {
                     logger.info("received mail: {}", message.getAttribute("href"));
                     message.click();
+
+                    if(driver.getCurrentUrl().endsWith("#google_vignette")){
+                        mail.skipAd();
+                        return;
+                    }
+
                     mail.parse();
                 }
 
