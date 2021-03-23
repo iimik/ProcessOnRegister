@@ -1,12 +1,16 @@
 package org.finalframework.processon;
 
-import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
-
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 
 /**
  * ProcessOn微信注册器
@@ -19,13 +23,15 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class ProcessOnWeChatRegister {
 
-    private static final String HOME = "https://www.processon.com/i/566ae249e4b0add117b7c405";
-
     private final WebDriver driver = new ChromeDriver();
 
     public static void main(String[] args) {
 
-        final String home = args == null || args.length == 0 ? HOME : args[0];
+        if (args == null || args.length == 0) {
+            throw new IllegalArgumentException("请输入您的专属链接！");
+        }
+
+        final String home = args[0];
         logger.info("HOME:{}", home);
 
         int count = 1;
@@ -34,7 +40,7 @@ public class ProcessOnWeChatRegister {
             ProcessOnWeChatRegister register = new ProcessOnWeChatRegister();
             try {
                 register.home(home);
-                register.login();
+//                register.login();
                 register.wechatLogin();
                 register.skipBindAccount();
                 register.goSetting();
@@ -50,7 +56,6 @@ public class ProcessOnWeChatRegister {
         }
     }
 
-
     public ProcessOnWeChatRegister() {
         driver.manage().window().setPosition(new Point(0, 0));
         driver.manage().window().maximize();
@@ -65,6 +70,9 @@ public class ProcessOnWeChatRegister {
 
     public void wechatLogin() {
         logger.info("wechat login...");
+
+        driver.navigate().to("https://www.processon.com/signup");
+
         driver.findElement(By.id("weixin_login")).click();
         logger.info("please scan qrcode use wechat");
     }
@@ -75,8 +83,7 @@ public class ProcessOnWeChatRegister {
             sleep(2000);
             logger.info("wait to skip bind account...");
         } while (!driver.getCurrentUrl().startsWith("https://www.processon.com/wechat/public/bind_account")
-                && !driver.getCurrentUrl().startsWith("https://www.processon.com/diagrams"));
-
+            && !driver.getCurrentUrl().startsWith("https://www.processon.com/diagrams"));
 
         while (true) {
             sleep(1000);
@@ -105,7 +112,6 @@ public class ProcessOnWeChatRegister {
             }
         }
 
-
     }
 
     public void home(String url) throws InterruptedException {
@@ -122,7 +128,6 @@ public class ProcessOnWeChatRegister {
         driver.close();
     }
 
-
     private WebElement findElement(By by) {
         try {
             return driver.findElement(by);
@@ -130,7 +135,6 @@ public class ProcessOnWeChatRegister {
             return null;
         }
     }
-
 
     public void bindMail() {
         logger.info("try to bind mail...");
@@ -190,7 +194,6 @@ public class ProcessOnWeChatRegister {
                         }
                     }).start();
 
-
                 }
 
                 @Override
@@ -227,7 +230,6 @@ public class ProcessOnWeChatRegister {
             unbindWeChat();
         }
 
-
     }
 
     public void unbindWeChat() {
@@ -235,8 +237,8 @@ public class ProcessOnWeChatRegister {
         driver.findElement(By.id("bingweixin")).click();
         sleep(100);
         driver.findElement(By.id("global_confirm_window"))
-                .findElement(By.className("okbtn"))
-                .click();
+            .findElement(By.className("okbtn"))
+            .click();
     }
 
     public void loginOut() {
