@@ -69,11 +69,15 @@ public class ProcessOnWeChatRegister {
     }
 
     public void wechatLogin() {
+
         logger.info("wechat login...");
 
         driver.navigate().to("https://www.processon.com/signup");
 
-        driver.findElement(By.id("weixin_login")).click();
+//        driver.findElement(By.id("weixin_login")).click();
+        // <span onclick="login.cutLoginWay('weixin')" data-type="icon_weixin" class="icons weixin"></span>
+        // fix 微信登录按钮发生变化无法打开扫码问题 （#2）
+        driver.findElement(By.className("weixin")).click();
         logger.info("please scan qrcode use wechat");
     }
 
