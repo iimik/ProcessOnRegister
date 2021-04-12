@@ -12,7 +12,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.finalframework.processon</groupId>
     <artifactId>processon-register</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
     <name>processon-register</name>
     <description>Demo project for Spring Boot</description>
 
