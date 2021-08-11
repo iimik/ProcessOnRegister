@@ -1,6 +1,7 @@
 package org.finalframework.processon;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import lombok.extern.slf4j.Slf4j;
@@ -44,6 +45,7 @@ public class ProcessOnWeChatRegister {
                 register.wechatLogin();
                 register.skipBindAccount();
                 register.goSetting();
+                register.updateNickName();
                 register.bindMail();
                 register.loginOut();
                 logger.info("--> 第{}次注册完成，用时：{}", count++, System.currentTimeMillis() - start);
@@ -54,6 +56,13 @@ public class ProcessOnWeChatRegister {
 
             }
         }
+    }
+
+    private void updateNickName() {
+        WebElement fullName = findElement(By.name("fullName"));
+        fullName.click();
+        new Actions(driver).sendKeys(UUID.randomUUID().toString().replace("-","").substring(0,10)).perform();
+
     }
 
     public ProcessOnWeChatRegister() {

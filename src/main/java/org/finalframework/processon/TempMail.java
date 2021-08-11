@@ -22,10 +22,16 @@ public class TempMail<T> implements Mail<T> {
     private static final String HOME = "https://www.linshiyouxiang.net/";
     private static final List<String> MAIL_SUFFIXS = Arrays.asList(
             "linshiyouxiang.net",
-            "besttempmail.com",
-            "bestlistbase.com",
+            "iffygame.com",
+            "maileven.com",
+            "smuggroup.com",
+            "chapedia.net",
+//            "besttempmail.com",
+//            "bestlistbase.com",
             "meantinc.com",
             "powerencry.com",
+            "worldzipcodes.net",
+            "chapedia.org",
             "chasefreedomactivate.com",
             "wellsfargocomcardholders.com"
     );
